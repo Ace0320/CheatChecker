@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CheatChecker</class>
+ <widget class="QMainWindow" name="CheatChecker">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cheat Checker</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="centralLayout" stretch="1,9">
+    <item>
+     <layout class="QVBoxLayout" name="sideLayout">
+      <item>
+       <widget class="QLabel" name="codesLabel">
+        <property name="text">
+         <string>Similar Codes:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListView" name="codesListView"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="checkCheatButton">
+        <property name="styleSheet">
+         <string notr="true">margin: -1px; padding: 3px</string>
+        </property>
+        <property name="text">
+         <string>Check Cheat</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout" stretch="0,0">
+      <item>
+       <layout class="QHBoxLayout" name="codeLayout">
+        <item>
+         <layout class="QVBoxLayout" name="code1Layout">
+          <item>
+           <widget class="QLabel" name="code1Label">
+            <property name="text">
+             <string>Code 1:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="code1TextArea"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="code2Layout">
+          <item>
+           <widget class="QLabel" name="code2Label">
+            <property name="text">
+             <string>Code 2:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="code2TextArea"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="folderLayout">
+        <item>
+         <widget class="QLineEdit" name="folderEdit"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="setFolderButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
