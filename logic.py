@@ -13,7 +13,7 @@ def serialize(code, only_main=True):
         code = main.match(code).group(1)
     for statement in declare.findall(code):
         for var in variable.findall(statement):
-            code = re.sub("\b" + var + "\b", '', code)
+            code = re.sub(r"\b{}\b".format(var), '', code)
     return clean.sub('', code)
 
 
@@ -21,21 +21,21 @@ def similarity(a, b):
     return round(SequenceMatcher(None, a, b).ratio() * 100, 1)
 
 
-def check_cheating(path="./codes/"):
+def get_cheaters(path="./codes/"):
     codes = {}
     matches = []
     for file_name in os.listdir(path):
         if file_name.endswith(".cpp"):
             id_ = get_id.search(file_name).group()
-            code = serialize(open(path + file_name).read())
+            code = serialize(open(os.path.join(path, file_name)).read())
             for _id, _code in codes.items():
                 ratio = similarity(code, _code)
-                if ratio < 60:
+                if ratio > 60:
                     matches.append((ratio, id_, _id, file_name))
             codes[id_] = code
     return sorted(matches, reverse=True)
 
 
 if __name__ == "__main__":
-    for match in check_cheating():
+    for match in get_cheaters():
         print(f"{match[0]}%\t{match[1]} : {match[2]}\t{match[3]}")

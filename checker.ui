@@ -14,26 +14,32 @@
    <string>Cheat Checker</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="centralLayout" stretch="1,9">
+   <layout class="QHBoxLayout" name="centralLayout" stretch="0,1">
     <item>
      <layout class="QVBoxLayout" name="sideLayout">
       <item>
-       <widget class="QLabel" name="codesLabel">
+       <widget class="QLabel" name="cheatersLabel">
         <property name="text">
-         <string>Similar Codes:</string>
+         <string>Cheaters:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QListView" name="codesListView"/>
+       <widget class="QListWidget" name="cheatersList">
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="checkCheatButton">
+       <widget class="QPushButton" name="getCheatersButton">
         <property name="styleSheet">
          <string notr="true">margin: -1px; padding: 3px</string>
         </property>
         <property name="text">
-         <string>Check Cheat</string>
+         <string>Get Cheaters</string>
         </property>
        </widget>
       </item>
