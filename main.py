@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from .layout import Ui_CheatChecker
+from layout import Ui_CheatChecker
 # If layout shows an import error, generate it using:
 # pyuic5 checker.ui -o layout.py
 

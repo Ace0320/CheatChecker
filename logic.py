@@ -13,7 +13,7 @@ def serialize(code, only_main=True):
         code = main.match(code).group(1)
     for statement in declare.findall(code):
         for var in variable.findall(statement):
-            code = re.sub(rf"\b{var}\b", '', code)
+            code = re.sub("\b" + var + "\b", '', code)
     return clean.sub('', code)
 
 
