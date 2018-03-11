@@ -1,4 +1,5 @@
 from difflib import SequenceMatcher
+from collections import OrderedDict
 import re, os
 
 clean = re.compile(r"//.*\n| |\n")
@@ -22,20 +23,20 @@ def similarity(a, b):
 
 
 def get_cheaters(path="./codes/"):
-    codes = {}
+    cheaters = {}
     matches = []
     for file_name in os.listdir(path):
         if file_name.endswith(".cpp"):
             id_ = get_id.search(file_name).group()
-            code = serialize(open(os.path.join(path, file_name)).read())
-            for _id, _code in codes.items():
-                ratio = similarity(code, _code)
+            code = serialize(open(path + file_name).read())
+            for _id, file in cheaters.items():
+                ratio = similarity(code, file["code"])
                 if ratio > 60:
-                    matches.append((ratio, id_, _id, file_name))
-            codes[id_] = code
-    return sorted(matches, reverse=True)
+                    matches.append((f"{ratio}% {id_}:{_id}", [file_name, file["name"]]))
+            cheaters[id_] = {"code": code, "name": file_name}
+    return OrderedDict(sorted(matches, reverse=True))
 
 
 if __name__ == "__main__":
-    for match in get_cheaters():
-        print(f"{match[0]}%\t{match[1]} : {match[2]}\t{match[3]}")
+    for match in get_cheaters().keys():
+        print(match)
