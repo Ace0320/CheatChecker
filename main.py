@@ -1,6 +1,7 @@
 import os, sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
+from threading import Thread
 from logic import get_cheaters
 from layout import Ui_CheatChecker
 # If layout shows an import error, generate it using:
@@ -24,11 +25,16 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
     def getCheaters(self):
         if not self.folder:
             self.setFolder()
-        if self.folder:
-            self.cheaters = get_cheaters(self.folder)
-            self.cheatersList.addItems(self.cheaters.keys())
+            if not self.folder: return
+        Thread(target=self.processCheaters).start()
+
+    def processCheaters(self):
+        self.cheatersList.clear()
+        self.cheaters = get_cheaters(self.folder)
+        self.cheatersList.addItems(self.cheaters.keys())
 
     def openCodes(self, index):
+        if not index: return
         file1, file2 = self.cheaters[index]
         self.code1Label.setText("Code 1: " + file1)
         self.code1TextArea.setText(open(os.path.join(self.folder, file1)).read())

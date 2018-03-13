@@ -1,5 +1,6 @@
 # Ignore all folders
 */
 
-# Ignore generated layout
+# Ignore generated layout and specs
 layout.py
+*.spec

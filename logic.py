@@ -11,7 +11,8 @@ get_id = re.compile(r"[uU]\d{8}")
 
 def serialize(code, only_main=True):
     if only_main:
-        code = main.match(code).group(1)
+        try: code = main.match(code).group(1)
+        except AttributeError: return False
     for statement in declare.findall(code):
         for var in variable.findall(statement):
             code = re.sub(r"\b{}\b".format(var), '', code)
@@ -29,12 +30,13 @@ def get_cheaters(path="./codes/"):
         if file_name.endswith(".cpp"):
             id_ = get_id.search(file_name).group()
             code = serialize(open(os.path.join(path, file_name)).read())
+            if not code: continue
             for _id, file in cheaters.items():
                 ratio = similarity(code, file["code"])
-                if ratio > 60:
+                if ratio > 40:
                     matches.append((f"{ratio}% {id_}:{_id}", [file_name, file["name"]]))
             cheaters[id_] = {"code": code, "name": file_name}
-    return OrderedDict(sorted(matches, reverse=True))
+    return OrderedDict(sorted(matches, key=lambda m: float(m[0].split("%")[0]), reverse=True))
 
 
 if __name__ == "__main__":
