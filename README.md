@@ -1,10 +1,27 @@
 ## Cheat Checker
 
-A simple application that checks code submissions for possible cheating attempts among the submitted codes.  
-It's written using PyQt5 in Python 3 and is licenced under the MIT license.
+A simple program that checks code submissions for possible cheating attempts among the submitted codes.  
+It's written in Python 3 using PyQt5 and is licensed under the [MIT license](./LICENSE.md).
 
-### Demo
-![](./demo.png)
+### ScreenShot
+![](./screenshot.png)
+
+### How It Works
+
+The user specifies the folder where all the code files are located.  
+The program then runs through them and cleans the code from the following:
+
+- Code outside the main function
+- Spaces and new lines
+- Variable names
+
+Then it compares all cleaned code strings against each other,  
+and lists them starting from the most similar ones.
+
+### Downloads
+
+Download the latest compiled "exe" file from [Releases](../../releases).  
+Or download the source code and follow the steps below to run it.
 
 ### Setup
 
