@@ -14,13 +14,14 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         self.setupUi(self)
         self.cheaters = self.folder = None
         self.setWindowIcon(QIcon(os.path.join(getattr(sys, "_MEIPASS", "."), "checker.ico")))
+        self.folderEdit.textChanged.connect(self.setFolder)
         self.setFolderButton.clicked.connect(self.setFolder)
         self.getCheatersButton.clicked.connect(self.getCheaters)
         self.cheatersList.currentTextChanged.connect(self.openCodes)
 
-    def setFolder(self):
-        self.folder = str(QFileDialog.getExistingDirectory(self, "Select Codes Directory"))
-        self.folderEdit.setText(self.folder)
+    def setFolder(self, folder=None):
+        self.folder = folder or str(QFileDialog.getExistingDirectory(self, "Select Codes Directory"))
+        if not folder: self.folderEdit.setText(self.folder)
 
     def getCheaters(self):
         if not self.folder:
@@ -32,6 +33,8 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         self.cheatersList.clear()
         self.cheaters = get_cheaters(self.folder)
         self.cheatersList.addItems(self.cheaters.keys())
+        self.cheatersList.setMinimumWidth(self.cheatersList.sizeHintForColumn(0) + 36)
+        self.cheatersLabel.setText("Cheaters in " + self.folder.rsplit("/", 1)[1] + ":")
 
     def openCodes(self, index):
         if not index: return
