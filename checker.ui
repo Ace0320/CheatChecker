@@ -19,6 +19,12 @@
      <layout class="QVBoxLayout" name="sideLayout">
       <item>
        <widget class="QLabel" name="cheatersLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Cheaters:</string>
         </property>
@@ -53,6 +59,12 @@
          <layout class="QVBoxLayout" name="code1Layout">
           <item>
            <widget class="QLabel" name="code1Label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Code 1:</string>
             </property>
@@ -70,6 +82,12 @@
          <layout class="QVBoxLayout" name="code2Layout">
           <item>
            <widget class="QLabel" name="code2Label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Code 2:</string>
             </property>
