@@ -28,12 +28,12 @@ def get_cheaters(path="./codes/"):
     matches = []
     for file_name in os.listdir(path):
         if file_name.endswith(".cpp"):
-            id_ = get_id.search(file_name).group()
+            id_ = get_id.search(file_name).group().lower()
             code = serialize(open(os.path.join(path, file_name)).read())
             if not code: continue
             for _id, file in cheaters.items():
                 ratio = similarity(code, file["code"])
-                if ratio > 40:
+                if ratio > 50:
                     matches.append((f"{ratio}% {id_}:{_id}", [file_name, file["name"]]))
             cheaters[id_] = {"code": code, "name": file_name}
     return OrderedDict(sorted(matches, key=lambda m: float(m[0].split("%")[0]), reverse=True))

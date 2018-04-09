@@ -18,6 +18,8 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         self.setFolderButton.clicked.connect(self.setFolder)
         self.getCheatersButton.clicked.connect(self.getCheaters)
         self.cheatersList.currentTextChanged.connect(self.openCodes)
+        self.cheatersSearchEdit.textChanged.connect(self.searchCheaters)
+        self.getCheatersButton.setFocus()
 
     def setFolder(self, folder=None):
         self.folder = folder or str(QFileDialog.getExistingDirectory(self, "Select Codes Directory"))
@@ -29,8 +31,15 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             if not self.folder: return
         Thread(target=self.processCheaters).start()
 
+    def searchCheaters(self, keyword):
+        if self.cheaters and keyword:
+            keyword = keyword.lower()
+            self.cheatersList.clear()
+            self.cheatersList.addItems(key for key in self.cheaters.keys() if keyword in key)
+
     def processCheaters(self):
         self.cheatersList.clear()
+        self.cheatersSearchEdit.clear()
         self.cheaters = get_cheaters(self.folder)
         self.cheatersList.addItems(self.cheaters.keys())
         self.cheatersList.setMinimumWidth(self.cheatersList.sizeHintForColumn(0) + 36)

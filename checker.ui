@@ -31,6 +31,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QLineEdit" name="cheatersSearchEdit">
+        <property name="placeholderText">
+         <string>⌕...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QListWidget" name="cheatersList">
         <property name="font">
          <font>
