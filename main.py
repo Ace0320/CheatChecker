@@ -1,7 +1,7 @@
 import os, sys
+from threading import Thread, active_count
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
-from threading import Thread
 from logic import get_cheaters
 from layout import Ui_CheatChecker
 # If layout shows an import error, generate it using:
@@ -29,7 +29,8 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         if not self.folder:
             self.setFolder()
             if not self.folder: return
-        Thread(target=self.processCheaters).start()
+        if active_count() == 1:
+            Thread(target=self.processCheaters).start()
 
     def searchCheaters(self, keyword):
         if self.cheaters and keyword:

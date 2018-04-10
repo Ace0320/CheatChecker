@@ -59,10 +59,13 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="mainLayout" stretch="0,0">
+     <layout class="QVBoxLayout" name="mainLayout" stretch="1,0">
       <item>
-       <layout class="QHBoxLayout" name="codeLayout">
-        <item>
+       <widget class="QSplitter" name="codeSplitter">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QWidget">
          <layout class="QVBoxLayout" name="code1Layout">
           <item>
            <widget class="QLabel" name="code1Label">
@@ -84,8 +87,8 @@
            <widget class="QTextBrowser" name="code1TextArea"/>
           </item>
          </layout>
-        </item>
-        <item>
+        </widget>
+        <widget class="QWidget">
          <layout class="QVBoxLayout" name="code2Layout">
           <item>
            <widget class="QLabel" name="code2Label">
@@ -107,8 +110,8 @@
            <widget class="QTextBrowser" name="code2TextArea"/>
           </item>
          </layout>
-        </item>
-       </layout>
+        </widget>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="folderLayout">
