@@ -65,7 +65,7 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <widget class="QWidget">
+        <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="code1Layout">
           <item>
            <widget class="QLabel" name="code1Label">
@@ -88,7 +88,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget">
+        <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="code2Layout">
           <item>
            <widget class="QLabel" name="code2Label">
@@ -115,6 +115,16 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="folderLayout">
+        <item>
+         <widget class="QCheckBox" name="mainCheckBox">
+          <property name="text">
+           <string>Only main() {...}</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLineEdit" name="folderEdit"/>
         </item>
