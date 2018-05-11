@@ -9,7 +9,7 @@ variable = re.compile(r"([a-zA-Z_][a-zA-Z0-9_]*)\s*[,=]?")
 get_id = re.compile(r"[uU]\d{8}")
 
 
-def serialize(code, only_main=True):
+def serialize(code, only_main):
     if only_main:
         try: code = main.match(code).group(1)
         except AttributeError: return False
@@ -23,13 +23,13 @@ def similarity(a, b):
     return round(SequenceMatcher(None, a, b).ratio() * 100, 1)
 
 
-def get_cheaters(path="./codes/"):
+def get_cheaters(path="./codes/", only_main=True):
     cheaters = {}
     matches = []
     for file_name in os.listdir(path):
         if file_name.endswith(".cpp"):
             id_ = get_id.search(file_name).group().lower()
-            code = serialize(open(os.path.join(path, file_name)).read())
+            code = serialize(open(os.path.join(path, file_name)).read(), only_main)
             if not code: continue
             for _id, file in cheaters.items():
                 ratio = similarity(code, file["code"])

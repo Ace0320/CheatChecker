@@ -33,15 +33,15 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             Thread(target=self.processCheaters).start()
 
     def searchCheaters(self, keyword):
-        if self.cheaters and keyword:
+        if self.cheaters:
             keyword = keyword.lower()
             self.cheatersList.clear()
-            self.cheatersList.addItems(key for key in self.cheaters.keys() if keyword in key)
+            self.cheatersList.addItems(key for key in self.cheaters.keys() if not keyword or keyword in key)
 
     def processCheaters(self):
         self.cheatersList.clear()
         self.cheatersSearchEdit.clear()
-        self.cheaters = get_cheaters(self.folder)
+        self.cheaters = get_cheaters(self.folder, self.mainCheckBox.isChecked())
         self.cheatersList.addItems(self.cheaters.keys())
         self.cheatersList.setMinimumWidth(self.cheatersList.sizeHintForColumn(0) + 36)
         self.cheatersLabel.setText("Cheaters in " + self.folder.rsplit("/", 1)[1] + ":")
