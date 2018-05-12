@@ -126,7 +126,27 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="folderEdit"/>
+         <widget class="Line" name="breakLine">
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <property name="midLineWidth">
+           <number>1</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="folderEdit">
+          <property name="placeholderText">
+           <string>Codes Directory...</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QToolButton" name="setFolderButton">
