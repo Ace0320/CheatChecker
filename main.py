@@ -113,7 +113,7 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
     def unzip(self):
         root = tkinter.Tk()
         root.withdraw()
-        ziped_path = tk.filedialog.askopenfilename()
+        ziped_path = tkinter.filedialog.askopenfilename()
         zip_ref = zipfile.ZipFile(ziped_path, 'r')
         zip_ref.extractall(unziped_path)
         zip_ref.close()
