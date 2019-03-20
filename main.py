@@ -1,4 +1,5 @@
 import os, sys, tkinter
+from tkinter import filedialog
 from threading import Thread, active_count
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
