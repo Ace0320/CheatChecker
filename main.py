@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, tkinter
 from threading import Thread, active_count
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
@@ -67,7 +67,7 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
 
     def unzip_rest(self, files):
         for folder in os.listdir(files):
-            zip_ref1 = zipfile.ZipFile(unziped_path+ "\\" +folder, 'r') 
+            zip_ref1 = zipfile.ZipFile(unziped_path+ "\\" +folder, 'r')
             zip_ref1.extractall(everything_unziped)
             zip_ref1.close()
             #print(folder)
@@ -109,8 +109,11 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
                     copyfile(theFile, newFile)
         except FileNotFoundError:
             print("Path not implemented yet")
-            
+
     def unzip(self):
+        root = tkinter.Tk()
+        root.withdraw()
+        ziped_path = tk.filedialog.askopenfilename()
         zip_ref = zipfile.ZipFile(ziped_path, 'r')
         zip_ref.extractall(unziped_path)
         zip_ref.close()
@@ -120,11 +123,10 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             self.folderEdit.setText(cheatCheck)
         try:
             os.mkdir(cheatCheck)
-        except FileExistsError: 
+        except FileExistsError:
             print("Exists")
         self.cht_setup()
         self.folderEdit.setText(cheatCheck)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
