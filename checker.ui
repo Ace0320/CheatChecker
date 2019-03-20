@@ -116,13 +116,20 @@
       <item>
        <layout class="QHBoxLayout" name="folderLayout">
         <item>
-         <widget class="QCheckBox" name="mainCheckBox">
+        <widget class="QToolButton" name="unzipSubmissions">
+            <property name="styleSheet">
+                <string notr="true">padding: 2px</string>
+            </property>
+          <property name="text">
+           <string>Unzip</string>
+          </property>
+         <!--<widget class="QCheckBox" name="mainCheckBox">
           <property name="text">
            <string>Only main() {...}</string>
           </property>
           <property name="checked">
-           <bool>true</bool>
-          </property>
+           <bool>false</bool>
+          </property>-->
          </widget>
         </item>
         <item>
