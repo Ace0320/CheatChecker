@@ -115,6 +115,8 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         root = tkinter.Tk()
         root.withdraw()
         ziped_path = tkinter.filedialog.askopenfilename()
+        if ziped_path == "":
+            ziped_path = "C:\\Users\\s526521\\Downloads\\submissions.zip"
         zip_ref = zipfile.ZipFile(ziped_path, 'r')
         zip_ref.extractall(unziped_path)
         zip_ref.close()
