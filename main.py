@@ -141,6 +141,11 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
                 os.mkdir(cheatCheck)
             except FileExistsError:
                 print("Exists")
+#This is to see if I can tell if it is a folder or not, a folder with have a blank extension, thus ""
+#                if os.path.splitext(cheatCheck)[1] == "":
+#                    print("true")
+#                else:
+#                    print("false")
             self.cht_setup()
             self.folderEdit.setText(cheatCheck)
 
