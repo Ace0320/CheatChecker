@@ -69,7 +69,15 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
 
     def unzip_rest(self, files):
         for folder in os.listdir(files):
-            zip_ref1 = zipfile.ZipFile(unziped_path+ "\\" +folder, 'r')
+            newFolder = unziped_path+ "\\" +folder
+#            try:
+            zip_ref1 = zipfile.ZipFile(newFolder, 'r')
+#            except PermissionError:
+                #removes folder completly, and replaces it with new unzipped foldsers
+#                rmtree(newFolder)
+#                zip_ref1 = zipfile.ZipFile(newFolder, 'r')
+#                Edit above not working yet
+#                print("Exists")
             zip_ref1.extractall(everything_unziped)
             zip_ref1.close()
             #print(folder)
@@ -113,9 +121,10 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             print("Path not implemented yet")
 
     def unzip(self):
+        #planning on implementing a file naming system that uses date and time EX: submissions 3 21 - 15 24
         root = tkinter.Tk()
         root.withdraw()
-        ziped_path = tkinter.filedialog.askopenfilename()
+        ziped_path = filedialog.askopenfilename()
         if ziped_path != "":
             zip_ref = zipfile.ZipFile(ziped_path, 'r')
             zip_ref.extractall(unziped_path)
@@ -123,11 +132,10 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             fileType = os.listdir(unziped_path)[1]
             extension = os.path.splitext(fileType)[1]
             print("________\nThe file extention of the first file is: "+extension+"\n________")
-            #if extesnion is .zip, then run this try/catch block, but if not, need to skip
+            #if extesnion is .zip, then run this line, but if not, need to skip
             try:
                 self.unzip_rest(unziped_path)
             except PermissionError:
-                rmtree() 
                 self.folderEdit.setText(cheatCheck)
             try:
                 os.mkdir(cheatCheck)
