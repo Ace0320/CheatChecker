@@ -119,6 +119,9 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             zip_ref = zipfile.ZipFile(ziped_path, 'r')
             zip_ref.extractall(unziped_path)
             zip_ref.close()
+            fileType = os.listdir(unziped_path)[1]
+            extension = os.path.splitext(fileType)[1]
+            print("________\nThe file extention of the first file is: "+extension+"\n________")
             try:
                 self.unzip_rest(unziped_path)
             except PermissionError:
