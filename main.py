@@ -6,7 +6,8 @@ from PyQt5.QtGui import QIcon
 from logic import get_cheaters
 from layout import Ui_CheatChecker
 import zipfile
-from shutil import copyfile
+#import shutil
+from shutil import copyfile, rmtree
 # If layout shows an import error, generate it using:
 # pyuic5 checker.ui -o layout.py
 
@@ -122,9 +123,11 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
             fileType = os.listdir(unziped_path)[1]
             extension = os.path.splitext(fileType)[1]
             print("________\nThe file extention of the first file is: "+extension+"\n________")
+            #if extesnion is .zip, then run this try/catch block, but if not, need to skip
             try:
                 self.unzip_rest(unziped_path)
             except PermissionError:
+                rmtree() 
                 self.folderEdit.setText(cheatCheck)
             try:
                 os.mkdir(cheatCheck)
