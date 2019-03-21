@@ -127,6 +127,11 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         ziped_path = filedialog.askopenfilename()
         if ziped_path != "":
             zip_ref = zipfile.ZipFile(ziped_path, 'r')
+#This is so if the folder exists, it will delete it so files will update, otherwise files and folders won't update, only new things
+            #will be added to the file
+            if os.path.exists(unziped_path):
+                rmtree(unziped_path)
+                os.mkdir(unziped_path)
             zip_ref.extractall(unziped_path)
             zip_ref.close()
             fileType = os.listdir(unziped_path)[1]
