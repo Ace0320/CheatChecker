@@ -115,21 +115,20 @@ class CheatChecker(QMainWindow, Ui_CheatChecker):
         root = tkinter.Tk()
         root.withdraw()
         ziped_path = tkinter.filedialog.askopenfilename()
-        if ziped_path == "":
-            ziped_path = "C:\\Users\\s526521\\Downloads\\submissions.zip"
-        zip_ref = zipfile.ZipFile(ziped_path, 'r')
-        zip_ref.extractall(unziped_path)
-        zip_ref.close()
-        try:
-            self.unzip_rest(unziped_path)
-        except PermissionError:
+        if ziped_path != "":
+            zip_ref = zipfile.ZipFile(ziped_path, 'r')
+            zip_ref.extractall(unziped_path)
+            zip_ref.close()
+            try:
+                self.unzip_rest(unziped_path)
+            except PermissionError:
+                self.folderEdit.setText(cheatCheck)
+            try:
+                os.mkdir(cheatCheck)
+            except FileExistsError:
+                print("Exists")
+            self.cht_setup()
             self.folderEdit.setText(cheatCheck)
-        try:
-            os.mkdir(cheatCheck)
-        except FileExistsError:
-            print("Exists")
-        self.cht_setup()
-        self.folderEdit.setText(cheatCheck)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
